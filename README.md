@@ -3,6 +3,7 @@ O CNPJ alfanumérico é a nova forma de identificar empresas no Brasil, combinan
 ![image](https://github.com/user-attachments/assets/8daee1bf-455c-44a5-a565-94f358267f96) <p>
 
 <b>#Linguagem disponível para validar</b> <p>
+✔ Pascal (Delphi e Lazarus)<p>
 ✔ Python <p>
 ✔ C# (C Sharp)<p>
 ✔ C++<p>
