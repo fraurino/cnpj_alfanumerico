@@ -1,0 +1,39 @@
+public class CNPJValidator {
+    public static boolean validarCNPJAlfanumerico(String cnpj) {
+        if (cnpj.length() != 14) return false;
+
+        int charParaValor(char caractere) {
+            return (int) caractere - 48;
+        }
+
+        int[] valores = new int[12];
+        for (int i = 0; i < 12; i++) {
+            valores[i] = charParaValor(cnpj.charAt(i));
+        }
+
+        // Pesos para o primeiro DV
+        int[] pesos1 = {5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2};
+        int soma = 0;
+        for (int i = 0; i < 12; i++) {
+            soma += valores[i] * pesos1[i];
+        }
+        int resto = soma % 11;
+        int primeiroDV = (resto < 2) ? 0 : 11 - resto;
+
+        // Pesos para o segundo DV
+        int[] pesos2 = {6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2};
+        soma = 0;
+        for (int i = 0; i < 12; i++) {
+            soma += valores[i] * pesos2[i];
+        }
+        soma += primeiroDV * pesos2[12];
+        resto = soma % 11;
+        int segundoDV = (resto < 2) ? 0 : 11 - resto;
+
+        return primeiroDV == charParaValor(cnpj.charAt(12)) && segundoDV == charParaValor(cnpj.charAt(13));
+    }
+
+    public static void main(String[] args) {
+        System.out.println(validarCNPJAlfanumerico("12ABC34501DE35")); // True ou False
+    }
+}
